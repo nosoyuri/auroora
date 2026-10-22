@@ -1,101 +1,127 @@
 /* ==========================================================
-   AURORA · tema minimalista y futurista estilo Apple
-   Dark y light idénticos · botones glassmorphism · móvil + PC
+   AURORA · estilo Apple (macOS / iOS Liquid Glass)
+   Gris oscuro · dark = light · botones glass · PC + móvil
    ========================================================== */
 
-/* ---------- 1. PALETA (igual en dark y light) ---------- */
+/* ---------- 1. VARIABLES (igual en dark y light) ---------- */
 body,
 body.theme-dark,
 body.theme-light {
   color-scheme: dark;
 
-  /* Color de acento: #d13d5f */
+  /* Acento */
   --accent-h: 346;
   --accent-s: 62%;
   --accent-l: 53%;
   --brand: #d13d5f;
+  --brand-soft: rgba(209, 61, 95, 0.18);
 
-  /* Escala base (negro Apple) */
-  --color-base-00: #000000;
-  --color-base-05: #070708;
-  --color-base-10: #0b0b0d;
-  --color-base-20: #121214;
-  --color-base-25: #18181b;
-  --color-base-30: #232326;
-  --color-base-35: #2c2c30;
-  --color-base-40: #3a3a3f;
-  --color-base-50: #55555b;
-  --color-base-60: #7c7c84;
-  --color-base-70: #a1a1a8;
-  --color-base-100: #f5f5f7;
+  /* Superficies (capas de gris Apple) */
+  --surface-content: #2c2c2e;   /* notas */
+  --surface-sidebar: #242426;   /* barra lateral y cinta */
+  --surface-raised:  #3a3a3c;   /* elementos elevados */
 
-  /* Fondos */
-  --background-primary: #000000;
-  --background-primary-alt: #0b0b0d;
-  --background-secondary: #0b0b0d;
-  --background-secondary-alt: #070708;
-  --background-modifier-border: rgba(255, 255, 255, 0.08);
-  --background-modifier-border-hover: rgba(255, 255, 255, 0.16);
+  --color-base-00: #1c1c1e;
+  --color-base-10: #242426;
+  --color-base-20: #2c2c2e;
+  --color-base-25: #323234;
+  --color-base-30: #3a3a3c;
+  --color-base-35: #444446;
+  --color-base-40: #545458;
+  --color-base-50: #6e6e73;
+  --color-base-60: #8e8e93;
+  --color-base-70: #aeaeb2;
+  --color-base-100: #ffffff;
+
+  --background-primary: var(--surface-content);
+  --background-primary-alt: #323234;
+  --background-secondary: var(--surface-sidebar);
+  --background-secondary-alt: #1f1f21;
+
+  /* Separadores finos tipo Apple */
+  --background-modifier-border: rgba(84, 84, 88, 0.55);
+  --background-modifier-border-hover: rgba(84, 84, 88, 0.9);
   --background-modifier-border-focus: var(--brand);
-  --background-modifier-hover: rgba(255, 255, 255, 0.06);
-  --background-modifier-active-hover: hsla(346, 62%, 53%, 0.18);
-  --background-modifier-form-field: rgba(255, 255, 255, 0.05);
+  --background-modifier-hover: rgba(255, 255, 255, 0.07);
+  --background-modifier-active-hover: var(--brand-soft);
+  --background-modifier-form-field: rgba(255, 255, 255, 0.07);
 
-  /* Texto */
-  --text-normal: #f5f5f7;
-  --text-muted: #a1a1a8;
-  --text-faint: #6e6e76;
+  /* Texto en niveles de blanco */
+  --text-normal: #ffffff;
+  --text-muted: rgba(235, 235, 245, 0.62);
+  --text-faint: rgba(235, 235, 245, 0.32);
   --text-on-accent: #ffffff;
   --text-accent: var(--brand);
   --text-accent-hover: #e2587a;
-  --text-selection: hsla(346, 62%, 53%, 0.3);
-  --text-highlight-bg: hsla(346, 62%, 53%, 0.3);
+  --text-selection: rgba(209, 61, 95, 0.32);
+  --text-highlight-bg: rgba(209, 61, 95, 0.32);
 
-  /* Interactivos */
-  --interactive-normal: rgba(255, 255, 255, 0.08);
+  --interactive-normal: rgba(255, 255, 255, 0.09);
   --interactive-hover: rgba(255, 255, 255, 0.16);
   --interactive-accent: var(--brand);
   --interactive-accent-hover: #e2587a;
 
-  /* Encabezados y negrita */
+  /* Encabezados y negrita: #d13d5f */
   --h1-color: #d13d5f;
   --h2-color: #d13d5f;
   --h3-color: #d13d5f;
   --h4-color: #d13d5f;
   --h5-color: #d13d5f;
   --h6-color: #d13d5f;
+  --inline-title-color: #d13d5f;
   --bold-color: #d13d5f;
-  --italic-color: #f5f5f7;
+  --bold-weight: 650;
+  --italic-color: #ffffff;
 
-  /* Tipografía tipo Apple */
-  --font-interface-theme: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Inter", "Segoe UI", system-ui, sans-serif;
+  /* Tipografía SF Pro */
+  --font-interface-theme: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", "Segoe UI", system-ui, sans-serif;
   --font-text-theme: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", "Segoe UI", system-ui, sans-serif;
-  --font-monospace-theme: "SF Mono", "JetBrains Mono", "Fira Code", Menlo, Consolas, monospace;
-  --line-height-normal: 1.65;
+  --font-monospace-theme: "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+  --line-height-normal: 1.6;
+
+  --h1-size: 1.95em;  --h1-weight: 700; --h1-line-height: 1.15;
+  --h2-size: 1.55em;  --h2-weight: 700; --h2-line-height: 1.2;
+  --h3-size: 1.28em;  --h3-weight: 650; --h3-line-height: 1.25;
+  --h4-size: 1.1em;   --h4-weight: 650;
+  --h5-size: 1em;     --h5-weight: 650;
+  --h6-size: 0.9em;   --h6-weight: 650;
+  --inline-title-size: 2em;
+  --inline-title-weight: 700;
 
   /* Formas */
   --radius-s: 8px;
   --radius-m: 12px;
   --radius-l: 18px;
   --radius-xl: 26px;
+  --radius-pill: 999px;
 
   /* Glass */
-  --glass-bg: rgba(255, 255, 255, 0.07);
-  --glass-bg-hover: rgba(255, 255, 255, 0.15);
-  --glass-border: rgba(255, 255, 255, 0.16);
-  --glass-blur: 14px;
+  --glass-bg: rgba(255, 255, 255, 0.09);
+  --glass-bg-hover: rgba(255, 255, 255, 0.17);
+  --glass-border: rgba(255, 255, 255, 0.14);
+  --glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  --glass-blur: blur(20px) saturate(180%);
+
+  /* Movimiento */
+  --spring: cubic-bezier(0.32, 0.72, 0, 1);
+
+  /* Barras de título y pestañas (sólidas) */
+  --titlebar-background: #242426;
+  --titlebar-background-focused: #242426;
+  --tab-container-background: #242426;
+  --tab-background-active: #2c2c2e;
+  --ribbon-background: #242426;
+  --ribbon-background-collapsed: #242426;
+  --divider-color: rgba(84, 84, 88, 0.55);
+  --divider-width: 1px;
 }
 
-/* ---------- 2. FONDO CON LUZ SUAVE (para que se note el blur) ---------- */
-.workspace-leaf-content,
-.view-content {
-  background:
-    radial-gradient(900px circle at 85% -10%, hsla(346, 62%, 53%, 0.14), transparent 60%),
-    radial-gradient(700px circle at -10% 110%, rgba(90, 80, 255, 0.10), transparent 60%),
-    #000000;
+/* ---------- 2. LECTURA: ESPACIO Y TIPOGRAFÍA ---------- */
+.markdown-rendered,
+.markdown-source-view.mod-cm6 .cm-content {
+  letter-spacing: -0.011em;
 }
 
-/* ---------- 3. ENCABEZADOS ---------- */
 .markdown-rendered h1,
 .markdown-rendered h2,
 .markdown-rendered h3,
@@ -103,259 +129,292 @@ body.theme-light {
 .markdown-rendered h5,
 .markdown-rendered h6,
 .cm-s-obsidian .HyperMD-header,
-.cm-s-obsidian .cm-header,
 .inline-title {
   color: #d13d5f !important;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
 }
 
-.markdown-rendered h1,
-.inline-title { font-weight: 700; }
-.markdown-rendered h2 { font-weight: 650; }
-.markdown-rendered h3 { font-weight: 600; }
+.markdown-rendered h1 { margin-top: 1.4em; margin-bottom: 0.4em; }
+.markdown-rendered h2 { margin-top: 1.3em; margin-bottom: 0.35em; }
 
-.markdown-rendered h1 {
-  padding-bottom: 0.3em;
-  border-bottom: 1px solid rgba(209, 61, 95, 0.25);
-}
-
-/* ---------- 4. NEGRITA ---------- */
+/* Negrita */
 .markdown-rendered strong,
 .markdown-rendered b,
-.cm-s-obsidian .cm-strong,
-.cm-s-obsidian span.cm-strong {
+.cm-s-obsidian .cm-strong {
   color: #d13d5f !important;
   font-weight: 650;
 }
 
-/* ---------- 5. TEXTO Y ELEMENTOS ---------- */
+/* Enlaces limpios */
 .markdown-rendered a,
 .cm-s-obsidian .cm-link,
 .cm-s-obsidian .cm-url {
   color: var(--brand);
   text-decoration: none;
-  border-bottom: 1px solid rgba(209, 61, 95, 0.35);
 }
-.markdown-rendered a:hover { border-bottom-color: var(--brand); }
+.markdown-rendered a:hover { text-decoration: underline; text-underline-offset: 3px; }
 
+/* Citas como tarjeta */
 .markdown-rendered blockquote {
+  border: none;
   border-left: 3px solid var(--brand);
-  background: rgba(255, 255, 255, 0.03);
-  border-radius: 0 var(--radius-m) var(--radius-m) 0;
-  padding: 0.6em 1em;
+  background: rgba(255, 255, 255, 0.045);
+  border-radius: var(--radius-m);
+  padding: 0.7em 1.1em;
 }
 
+/* Código */
 .markdown-rendered code,
 .cm-s-obsidian .cm-inline-code {
-  background: rgba(255, 255, 255, 0.07);
+  background: rgba(255, 255, 255, 0.09);
   border-radius: 6px;
   padding: 0.1em 0.4em;
 }
-
 .markdown-rendered pre {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #242426;
+  border: 1px solid rgba(84, 84, 88, 0.55);
   border-radius: var(--radius-m);
 }
 
+/* Separador */
 .markdown-rendered hr {
   border: none;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(209, 61, 95, 0.5), transparent);
+  background: rgba(84, 84, 88, 0.7);
+  margin: 2em 0;
 }
 
-.markdown-rendered table,
+/* Tablas */
+.markdown-rendered table { border-radius: var(--radius-m); overflow: hidden; }
+.markdown-rendered th { color: #d13d5f; background: rgba(255, 255, 255, 0.05); }
 .markdown-rendered th,
-.markdown-rendered td {
-  border-color: rgba(255, 255, 255, 0.1);
-}
-.markdown-rendered th { color: #d13d5f; }
+.markdown-rendered td { border-color: rgba(84, 84, 88, 0.55); }
 
-.markdown-rendered img {
-  border-radius: var(--radius-m);
-}
+.markdown-rendered img { border-radius: var(--radius-m); }
 
 .markdown-rendered ul > li::marker,
 .markdown-rendered ol > li::marker { color: var(--brand); }
 
-/* ---------- 6. BARRA LATERAL Y PESTAÑAS ---------- */
+/* ---------- 3. BARRA LATERAL Y CINTA: SÓLIDAS, SIN FADE ---------- */
 .workspace-split.mod-left-split,
 .workspace-split.mod-right-split,
-.workspace-ribbon {
-  background: #0b0b0d;
-  border-color: rgba(255, 255, 255, 0.06);
+.workspace-ribbon,
+.workspace-tabs.mod-top .workspace-tab-header-container,
+.nav-header,
+.nav-files-container,
+.workspace-sidedock-vault-profile {
+  background: var(--surface-sidebar) !important;
+  background-image: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  mask-image: none !important;
+  -webkit-mask-image: none !important;
+  box-shadow: none !important;
 }
 
-.nav-file-title,
-.nav-folder-title {
-  border-radius: var(--radius-s);
+.nav-files-container::before,
+.nav-files-container::after,
+.workspace-split::before,
+.workspace-split::after,
+.workspace-leaf-content::before,
+.workspace-leaf-content::after {
+  display: none !important;
 }
-.nav-file-title.is-active {
-  background: hsla(346, 62%, 53%, 0.16);
+
+/* Elementos de lista tipo Apple: rectángulos redondeados */
+.nav-file-title,
+.nav-folder-title,
+.tree-item-self {
+  border-radius: var(--radius-s);
+  margin: 1px 6px;
+  transition: background-color 0.18s var(--spring);
+}
+.nav-file-title.is-active,
+.tree-item-self.is-active {
+  background: var(--brand-soft) !important;
   color: #ffffff;
 }
 
+/* Pestañas */
+.workspace-tab-header { border-radius: var(--radius-s); }
 .workspace-tab-header.is-active {
-  background: rgba(255, 255, 255, 0.07);
-  border-radius: var(--radius-s);
+  background: rgba(255, 255, 255, 0.09);
 }
 
-/* ---------- 7. BOTONES GLASSMORPHISM (PC y móvil) ---------- */
+/* ---------- 4. BOTONES GLASSMORPHISM (cápsula) ---------- */
 button,
-.clickable-icon,
-.view-action,
-.nav-action-button,
-.side-dock-ribbon-action,
-.mobile-navbar-action,
 .mod-cta,
 .mod-warning {
   background-color: var(--glass-bg) !important;
   border: 1px solid var(--glass-border) !important;
-  backdrop-filter: blur(var(--glass-blur)) saturate(160%);
-  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(160%);
-  border-radius: var(--radius-m);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border-radius: var(--radius-pill);
+  box-shadow: var(--glass-highlight), 0 1px 2px rgba(0, 0, 0, 0.2) !important;
   color: var(--text-normal);
-  transition: background-color 0.2s ease, transform 0.12s ease, border-color 0.2s ease;
+  font-weight: 500;
+  padding: 6px 16px;
+  transition: background-color 0.2s var(--spring), transform 0.2s var(--spring);
+}
+button:hover,
+.mod-cta:hover {
+  background-color: var(--glass-bg-hover) !important;
+}
+button:active,
+.mod-cta:active {
+  transform: scale(0.96);
 }
 
-button:hover,
+/* Botón principal */
+.mod-cta {
+  background-color: rgba(209, 61, 95, 0.45) !important;
+  border-color: rgba(209, 61, 95, 0.7) !important;
+  color: #ffffff;
+}
+.mod-cta:hover { background-color: rgba(209, 61, 95, 0.65) !important; }
+
+/* Botón de peligro */
+.mod-warning {
+  background-color: rgba(255, 69, 58, 0.26) !important;
+  border-color: rgba(255, 69, 58, 0.55) !important;
+}
+
+/* Iconos clicables: transparentes, cristal solo al interactuar */
+.clickable-icon,
+.view-action,
+.nav-action-button,
+.side-dock-ribbon-action,
+.mobile-navbar-action {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: var(--radius-m);
+  transition: background-color 0.2s var(--spring), transform 0.2s var(--spring);
+}
 .clickable-icon:hover,
 .view-action:hover,
 .nav-action-button:hover,
 .side-dock-ribbon-action:hover {
-  background-color: var(--glass-bg-hover) !important;
-  border-color: rgba(255, 255, 255, 0.26) !important;
+  background: var(--glass-bg-hover) !important;
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
 }
-
-button:active,
 .clickable-icon:active,
 .view-action:active,
 .nav-action-button:active,
 .mobile-navbar-action:active {
-  background-color: var(--glass-bg-hover) !important;
-  transform: scale(0.96);
+  background: var(--glass-bg-hover) !important;
+  transform: scale(0.92);
 }
 
-/* Botón principal (acento) */
-.mod-cta {
-  background-color: hsla(346, 62%, 53%, 0.35) !important;
-  border-color: hsla(346, 62%, 53%, 0.6) !important;
-  color: #ffffff;
-}
-.mod-cta:hover,
-.mod-cta:active {
-  background-color: hsla(346, 62%, 53%, 0.55) !important;
-}
-
-/* Botón de peligro */
-.mod-warning {
-  background-color: rgba(255, 69, 58, 0.22) !important;
-  border-color: rgba(255, 69, 58, 0.5) !important;
-}
-
-/* Los iconos de la cinta y la barra no necesitan borde marcado */
-.clickable-icon,
-.side-dock-ribbon-action {
-  border-color: transparent !important;
-  background-color: transparent !important;
-}
-.clickable-icon:hover,
-.side-dock-ribbon-action:hover {
-  background-color: var(--glass-bg-hover) !important;
-}
-
-/* ---------- 8. CAMPOS, MENÚS Y VENTANAS ---------- */
+/* ---------- 5. CAMPOS, MENÚS Y VENTANAS (flotan, con cristal) ---------- */
 input[type="text"],
 input[type="search"],
 input[type="number"],
 textarea,
 select {
-  background: rgba(255, 255, 255, 0.05) !important;
-  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  background: rgba(255, 255, 255, 0.07) !important;
+  border: 1px solid rgba(84, 84, 88, 0.6) !important;
   border-radius: var(--radius-m);
   box-shadow: none !important;
 }
 input:focus,
 textarea:focus {
   border-color: var(--brand) !important;
-  box-shadow: 0 0 0 3px hsla(346, 62%, 53%, 0.2) !important;
+  box-shadow: 0 0 0 3px rgba(209, 61, 95, 0.25) !important;
 }
 
 .menu,
 .suggestion-container,
 .tooltip,
 .popover {
-  background: rgba(20, 20, 24, 0.72) !important;
-  backdrop-filter: blur(24px) saturate(180%);
-  -webkit-backdrop-filter: blur(24px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(58, 58, 60, 0.72) !important;
+  backdrop-filter: blur(30px) saturate(190%);
+  -webkit-backdrop-filter: blur(30px) saturate(190%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: var(--radius-l);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.4), var(--glass-highlight);
+  padding: 6px;
 }
+.menu-item { border-radius: var(--radius-s); }
+.menu-item.selected,
+.menu-item:hover { background: var(--brand-soft); }
 
 .modal {
-  background: rgba(14, 14, 17, 0.85);
-  backdrop-filter: blur(28px) saturate(180%);
-  -webkit-backdrop-filter: blur(28px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(44, 44, 46, 0.82);
+  backdrop-filter: blur(36px) saturate(190%);
+  -webkit-backdrop-filter: blur(36px) saturate(190%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: var(--radius-xl);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.5), var(--glass-highlight);
+}
+.modal-bg { background: rgba(0, 0, 0, 0.35); }
+
+/* Interruptor estilo iOS */
+.checkbox-container {
+  background-color: rgba(120, 120, 128, 0.36);
+  border-radius: var(--radius-pill);
+  transition: background-color 0.25s var(--spring);
+}
+.checkbox-container.is-enabled { background-color: var(--brand); }
+.checkbox-container::after {
+  background: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-/* Interruptores */
-.checkbox-container.is-enabled {
-  background-color: var(--brand);
-}
-
-/* Barras de scroll discretas */
+/* Scroll discreto */
 ::-webkit-scrollbar { width: 8px; height: 8px; }
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.14);
+  background: rgba(235, 235, 245, 0.2);
   border-radius: 8px;
 }
-::-webkit-scrollbar-thumb:hover { background: rgba(209, 61, 95, 0.6); }
+::-webkit-scrollbar-thumb:hover { background: rgba(209, 61, 95, 0.7); }
 
-/* ---------- 9. MÓVIL ---------- */
+/* ---------- 6. MÓVIL ---------- */
 body.is-mobile {
   --font-text-size: 17px;
-  --line-height-normal: 1.7;
+  --line-height-normal: 1.55;
 }
 
-/* Barra de navegación inferior en cristal */
+/* Cabecera sólida */
+body.is-mobile .view-header {
+  background: var(--surface-content);
+  border-bottom: 1px solid rgba(84, 84, 88, 0.55);
+}
+
+/* Barra inferior: cristal como la tab bar de iOS */
 body.is-mobile .mobile-navbar {
-  background: rgba(14, 14, 17, 0.6) !important;
-  backdrop-filter: blur(24px) saturate(180%);
-  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  background: rgba(36, 36, 38, 0.8) !important;
+  backdrop-filter: blur(30px) saturate(190%);
+  -webkit-backdrop-filter: blur(30px) saturate(190%);
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Cabecera superior transparente */
-body.is-mobile .view-header {
-  background: rgba(0, 0, 0, 0.55);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+/* Cajones laterales sólidos, sin fade */
+body.is-mobile .workspace-drawer,
+body.is-mobile .workspace-drawer-inner,
+body.is-mobile .workspace-drawer-header,
+body.is-mobile .workspace-drawer-active-tab-container {
+  background: var(--surface-sidebar) !important;
+  background-image: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  mask-image: none !important;
+  -webkit-mask-image: none !important;
 }
+body.is-mobile .workspace-drawer { border-color: rgba(84, 84, 88, 0.55); }
 
-/* Paneles laterales deslizantes */
-body.is-mobile .workspace-drawer {
-  background: rgba(10, 10, 13, 0.85);
-  backdrop-filter: blur(24px) saturate(180%);
-  -webkit-backdrop-filter: blur(24px) saturate(180%);
-  border-color: rgba(255, 255, 255, 0.08);
-}
-
-/* Botones más cómodos para el dedo */
+/* Botones cómodos para el dedo */
 body.is-mobile button,
 body.is-mobile .mod-cta {
-  min-height: 42px;
-  border-radius: 14px;
+  min-height: 44px;
+  padding: 8px 20px;
 }
 
-/* Barra de herramientas del teclado */
+/* Barra del teclado */
 body.is-mobile .mobile-toolbar {
-  background: rgba(14, 14, 17, 0.7);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: rgba(36, 36, 38, 0.82);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
